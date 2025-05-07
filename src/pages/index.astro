@@ -1,29 +1,12 @@
 ---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Beans from '../components/Beans.astro';
 // Import Stylesheet
 import '../styles/global.css';
 
-// data source
-// replace temporary JSON placeholder API
-const source = 'https://assets.codepen.io/16425/jelly-belly-beans.json';
-// fetch the data
-const res = await fetch(source); 
-// store retreived data
-const jellyBeans = await res.json();
 ---
+<BaseLayout>
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-
-		<!-- Normalize CSS -->
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
-
-		<title>Retreive and and display external API data with Astro</title>
-	</head>
-	<body>
 		
 		<header class="masthead">
 			<h1 class="site-title">Jelly Belly</h1>
@@ -31,25 +14,10 @@ const jellyBeans = await res.json();
 
 		<main id="content" class="wrapper">
 
-			<ul class="grid">
-		  
-				<!-- Your API Data -->
-				{
-					
-					jellyBeans.map( bean =>
-					<li style={`background: ${bean.backgroundColor} `} >
-						
-						<h3>{ bean.flavorName }</h3>
-						<img src={ bean.imageUrl } />
-						<p>{ bean.description }</p>
-					</li> 
-					)
-				}
-		  
-			</ul>
+		<Beans>
+		</Beans>	
 		  </main>
 		  
 
 
-	</body>
-</html>
+</BaseLayout>
